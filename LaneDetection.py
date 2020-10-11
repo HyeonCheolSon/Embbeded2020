@@ -142,3 +142,4 @@ def progress(frames):
     # img_color = frames[-1] if is_videoclip else frames[0]
     result = weighted_img(line_img, frames[-1])
     return result
+
