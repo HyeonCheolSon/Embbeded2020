@@ -37,3 +37,22 @@ def draw_lines(line_img, line, color=[255, 0, 0], thickness=12):
 def weighted_img(img, initial_img, α=0.8, β=1., λ=0.):
     return cv2.addWeighted(initial_img, α, img, β, λ)
 
+def color_img(img, push_color):
+    if push_color == "red":
+        lower = (0 - 10, 60, 60)
+        upper = (0 + 10, 255, 255)
+    elif push_color == "green":
+        lower = (60 - 10, 100, 100)
+        upper = (60 + 10, 255, 255)
+    elif push_color == "yellow":
+        lower = (30 - 10, 100, 100)
+        upper = (30 + 10, 255, 255)
+    elif push_color == "blue":
+        lower = (120 - 20, 60, 60)
+        upper = (120 + 20, 255, 255)
+    img_color = img
+    height, width = img_color.shape[:2]
+    img_hsv = cv2.cvtColor(img_color, cv2.COLOR_BGR2HSV)
+    img_mask = cv2.inRange(img_hsv, lower, upper)
+    img_result = cv2.bitwise_and(img_color, img_color, mask=img_mask)
+    return img_result
