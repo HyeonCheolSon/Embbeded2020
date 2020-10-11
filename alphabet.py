@@ -83,3 +83,5 @@ if __name__ == '__main__':
             np.savez(FNAME,train=train, train_labels=train_labels)
     else:
         print ('unknown option')
+
+        
